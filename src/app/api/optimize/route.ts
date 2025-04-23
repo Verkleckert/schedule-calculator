@@ -4,35 +4,28 @@ import { effectProfit } from "@/lib/tables"
 import type { MixRequest } from "@/lib/types"
 
 export async function POST(request: NextRequest) {
-    console.log("API route called with request:", request.url)
 
     try {
         const req = (await request.json()) as MixRequest
-        console.log("Request body:", req)
 
         // Handle case where initialEffect is empty (no initial effect)
         const startState = new Set(req.initialEffect ? [req.initialEffect] : [])
         const [profit, path] = searchOptimal(startState, req.maxSteps)
-        console.log("Calculated profit:", profit, "path:", path)
 
         const steps = []
         let currentState = startState
 
-        console.log("Initial state:", Array.from(currentState), "profit:", stateProfit(currentState))
 
         for (const substance of path) {
             const newState = applySubstance(currentState, substance)
 
             // Debug each effect's contribution to the profit
-            console.log(`After adding ${substance}, new state:`, Array.from(newState))
-            console.log("Effect profits:")
             let totalProfit = 0
             for (const effect of newState) {
                 const effectValue = effectProfit[effect] || 0.5
                 console.log(`  ${effect}: ${effectValue}`)
                 totalProfit += effectValue
             }
-            console.log(`Total profit: ${totalProfit}`)
 
             const multiplier = stateProfit(newState)
             const sellPrice = req.basePrice * (1 + multiplier)
@@ -56,8 +49,6 @@ export async function POST(request: NextRequest) {
             bestSequence: path,
             steps,
         }
-
-        console.log("API response:", response)
 
         return NextResponse.json(response)
     } catch (error) {

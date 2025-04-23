@@ -10,12 +10,6 @@ function setToString(set: Set<string>): string {
 // Apply a substance to a state and return the new state
 export function applySubstance(state: Set<string>, substance: string): Set<string> {
     const newState = new Set(state)
-    const inherent = substanceEffect[substance]
-
-    // Add inherent effect if not present and if there is space
-    if (!newState.has(inherent) && newState.size < MAX_EFFECTS) {
-        newState.add(inherent)
-    }
 
     // Take a snapshot before applying the mixing rules
     const snapshot = new Set(newState)
@@ -33,8 +27,15 @@ export function applySubstance(state: Set<string>, substance: string): Set<strin
         }
     }
 
+    const inherent = substanceEffect[substance]
+
+    if (!newState.has(inherent) && newState.size < MAX_EFFECTS) {
+        newState.add(inherent)
+    }
+
     return newState
 }
+
 
 // Calculate the profit multiplier for a state
 export function stateProfit(state: Set<string>): number {

@@ -52,19 +52,17 @@ export function MixerForm() {
                 throw new Error("Please enter valid numbers for base price and steps")
             }
 
-            // For substances with an initial effect, validate it
             if (initialEffect && !effectsList.includes(initialEffect)) {
                 throw new Error(`Invalid effect: ${initialEffect}`)
             }
 
-            // Call the API route
             const response = await fetch("/api/optimize", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    initialEffect: initialEffect || "", // Send empty string if null
+                    initialEffect: initialEffect || "",
                     basePrice: basePriceNum,
                     maxSteps: maxStepsNum,
                 }),
