@@ -14,6 +14,9 @@ services:
       PORT: 3000
     networks:
       - webnet
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
 
 networks:
   webnet:
