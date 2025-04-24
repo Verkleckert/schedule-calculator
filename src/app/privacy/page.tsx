@@ -1,4 +1,5 @@
 import Link from "next/link"
+import {BackButton} from "@/components/back-button";
 
 export const metadata = {
     title: "Privacy Policy | Verkleckert",
@@ -8,6 +9,7 @@ export const metadata = {
 export default function PrivacyPage() {
     return (
         <section className="container mx-auto max-w-3xl py-12 md:py-16 lg:py-20">
+            <BackButton />
             <div className="space-y-6">
                 <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Privacy Policy</h1>
                 <p className="text-muted-foreground">Last updated: 24.4.2025</p>

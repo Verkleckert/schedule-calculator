@@ -1,5 +1,6 @@
 import { Mail, MapPin, Github } from "lucide-react"
 import Link from "next/link"
+import {BackButton} from "@/components/back-button";
 
 export const metadata = {
     title: "Contact | Verkleckert",
@@ -9,6 +10,7 @@ export const metadata = {
 export default function ContactPage() {
     return (
         <section className="container mx-auto max-w-3xl py-12 md:py-16 lg:py-20">
+            <BackButton />
             <div className="space-y-6">
                 <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Get in Touch</h1>
                 <p className="text-muted-foreground">
