@@ -1,5 +1,6 @@
 import type { OptimizationResult } from "@/lib/types"
 
 declare global {
-    var mixerResults: Map<string, OptimizationResult> | undefined
+    // eslint-disable-next-line no-var
+    var mixerResults: Map<string, OptimizationResult> | undefined;
 }

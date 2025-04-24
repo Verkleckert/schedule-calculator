@@ -8,7 +8,7 @@ import type { OptimizationResult } from "@/lib/types"
 
 export function MixerResults() {
     const [result, setResult] = useState<OptimizationResult | null>(null)
-    const [loading, setLoading] = useState(false)
+    const [loading] = useState(false)
 
     // Function to load results from localStorage
     const loadResults = () => {

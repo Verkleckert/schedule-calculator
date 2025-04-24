@@ -2,7 +2,6 @@
 
 import type React from "react"
 import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -19,7 +18,6 @@ export function MixerForm() {
     const [basePrice, setBasePrice] = useState("")
     const [maxSteps, setMaxSteps] = useState("5")
     const [showPresetsInfo, setShowPresetsInfo] = useState(false)
-    const router = useRouter()
 
     // Update effect and price when preset changes
     useEffect(() => {

@@ -10,7 +10,6 @@ WORKDIR /app
 
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-COPY ./patches ./patches
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
   elif [ -f package-lock.json ]; then npm ci; \
@@ -29,6 +28,7 @@ COPY . .
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_DISABLE_ESLINT=true
 
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
@@ -40,7 +40,7 @@ RUN \
 # Production image, copy all the files and run next
 FROM base AS runner
 
-LABEL org.opencontainers.image.source=https://github.com/school-id/schoolid-frontend
+LABEL org.opencontainers.image.source=https://github.com/verkleckert/schedule-calculator
 
 WORKDIR /app
 

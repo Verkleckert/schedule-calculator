@@ -1,6 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { searchOptimal, applySubstance, stateProfit } from "@/lib/logic"
-import { effectProfit } from "@/lib/tables"
 import type { MixRequest } from "@/lib/types"
 
 export async function POST(request: NextRequest) {
@@ -18,14 +17,6 @@ export async function POST(request: NextRequest) {
 
         for (const substance of path) {
             const newState = applySubstance(currentState, substance)
-
-            // Debug each effect's contribution to the profit
-            let totalProfit = 0
-            for (const effect of newState) {
-                const effectValue = effectProfit[effect] || 0.5
-                console.log(`  ${effect}: ${effectValue}`)
-                totalProfit += effectValue
-            }
 
             const multiplier = stateProfit(newState)
             const sellPrice = req.basePrice * (1 + multiplier)

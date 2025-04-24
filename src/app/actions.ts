@@ -3,7 +3,7 @@ import { searchOptimal, applySubstance, stateProfit } from "@/lib/logic"
 import type { MixRequest, OptimizationResult } from "@/lib/types"
 
 export async function optimizeMix(req: MixRequest): Promise<string> {
-    const startState = new Set([req.initialEffect])
+    const startState = new Set<string>(req.initialEffect ? [req.initialEffect] : []);
     const [profit, path] = searchOptimal(startState, req.maxSteps)
 
     const steps = []
