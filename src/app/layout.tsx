@@ -3,6 +3,7 @@ import "@/app/globals.css"
 import type {Metadata} from "next"
 import {Inter} from "next/font/google"
 import {SonnerProvider} from "@/components/sonner-provider"
+import {Footer} from "@/components/footer";
 
 const inter = Inter({subsets: ["latin"]})
 
@@ -19,8 +20,11 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body className={`${inter.className} bg-gray-50 min-h-screen`}>
-        {children}
-        <SonnerProvider/>
+        <div className="flex min-h-screen flex-col">
+            <main className="flex-1">{children}</main>
+            <SonnerProvider/>
+            <Footer/>
+        </div>
         </body>
         </html>
     )
