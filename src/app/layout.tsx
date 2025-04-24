@@ -8,8 +8,16 @@ import {Footer} from "@/components/footer";
 const inter = Inter({subsets: ["latin"]})
 
 export const metadata: Metadata = {
-    title: "Substance Effect Mixer",
+    title: "Schedule I Calculator",
     description: "Calculate the optimal mixing sequence to maximize profit",
+    icons: [
+        {
+            rel: "icon",
+            type: "image/png",
+            sizes: "512x512",
+            url: "/assets/logo/favicon-512x512.png",
+        },
+    ]
 }
 
 export default function RootLayout({
