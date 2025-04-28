@@ -172,7 +172,7 @@ export function MixerForm() {
                             type="number"
                             placeholder="5"
                             min="1"
-                            max="10"
+                            max="8"
                             value={maxSteps}
                             onChange={(e) => setMaxSteps(e.target.value)}
                             required

@@ -3,7 +3,9 @@ import "@/app/globals.css"
 import type {Metadata} from "next"
 import {Inter} from "next/font/google"
 import {SonnerProvider} from "@/components/sonner-provider"
-import {Footer} from "@/components/footer";
+import {Footer} from "@/components/footer"
+import {ThemeProvider} from "@/components/theme-provider"
+import {ThemeToggle} from "@/components/theme-toggle"
 
 const inter = Inter({subsets: ["latin"]})
 
@@ -26,13 +28,22 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en">
-        <body className={`${inter.className} bg-gray-50 min-h-screen`}>
-        <div className="flex min-h-screen flex-col">
-            <main className="flex-1">{children}</main>
-            <SonnerProvider/>
-            <Footer/>
-        </div>
+        <html lang="en" suppressHydrationWarning>
+        <body className={`${inter.className} min-h-screen`}>
+        <ThemeProvider>
+            <div className="flex min-h-screen flex-col">
+                <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                    <div className="container flex h-14 items-center justify-between">
+                        <div className="flex items-center space-x-2 ml-1">
+                            <ThemeToggle />
+                        </div>
+                    </div>
+                </header>
+                <main className="flex-1">{children}</main>
+                <SonnerProvider/>
+                <Footer/>
+            </div>
+        </ThemeProvider>
         </body>
         </html>
     )

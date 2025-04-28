@@ -68,16 +68,16 @@ export function MixerResults() {
                 </CardHeader>
                 <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                        <div className="bg-gray-50 p-4 rounded-md">
-                            <div className="text-sm text-gray-500">Initial Effect</div>
+                        <div className="bg-card border border-border p-4 rounded-md">
+                            <div className="text-sm text-muted-foreground">Initial Effect</div>
                             <div className="font-medium">{result.initialEffect || "None"}</div>
                         </div>
-                        <div className="bg-gray-50 p-4 rounded-md">
-                            <div className="text-sm text-gray-500">Base Price</div>
+                        <div className="bg-card border border-border p-4 rounded-md">
+                            <div className="text-sm text-muted-foreground">Base Price</div>
                             <div className="font-medium">${result.basePrice.toFixed(2)}</div>
                         </div>
-                        <div className="bg-gray-50 p-4 rounded-md">
-                            <div className="text-sm text-gray-500">Final Sell Price</div>
+                        <div className="bg-card border border-border p-4 rounded-md">
+                            <div className="text-sm text-muted-foreground">Final Sell Price</div>
                             <div className="font-medium text-green-600">${result.finalSellPrice.toFixed(2)}</div>
                         </div>
                     </div>
