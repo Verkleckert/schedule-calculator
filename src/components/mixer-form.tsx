@@ -6,6 +6,13 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 import { effectsList, presets } from "@/lib/tables"
 import { showToast } from "@/lib/toast"
 import type { OptimizationResult } from "@/lib/types"
@@ -104,66 +111,37 @@ export function MixerForm() {
                     <div className="space-y-2">
                         <div className="flex items-center justify-between">
                             <Label htmlFor="preset">Starting Substance</Label>
-                            <Button
-                                type="button"
-                                variant="ghost"
-                                size="sm"
-                                className="h-8 w-8 p-0"
-                                onClick={() => setShowPresetsInfo(!showPresetsInfo)}
-                            >
-                                <InfoIcon className="h-4 w-4" />
-                                <span className="sr-only">Toggle presets info</span>
-                            </Button>
                         </div>
-                        <select
-                            id="preset"
-                            className="w-full p-2 border rounded-md"
+                        <Select
                             value={selectedPreset}
-                            onChange={(e) => setSelectedPreset(e.target.value)}
-                            required
+                            onValueChange={setSelectedPreset}
                         >
-                            <option value="" disabled>
-                                Select a starting substance
-                            </option>
-                            {presets.map((preset) => (
-                                <option key={preset.name} value={preset.name}>
-                                    {preset.name} - ${preset.basePrice} ({preset.initialEffect || "none"})
-                                </option>
-                            ))}
-                        </select>
+                            <SelectTrigger>
+                                <SelectValue placeholder="Select a starting substance" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {presets.map((preset) => (
+                                    <SelectItem key={preset.name} value={preset.name}>
+                                        {preset.name} - ${preset.basePrice} ({preset.initialEffect || "none"})
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
                         {selectedPreset && (
-                            <div className="mt-2 p-3 bg-gray-50 rounded-md">
+                            <div className="mt-2 p-3 bg-muted/50 rounded-md">
                                 <div className="grid grid-cols-2 gap-2">
                                     <div>
-                                        <span className="text-sm font-medium text-gray-500">Initial Effect:</span>
-                                        <div className="font-medium">{initialEffect || "None"}</div>
+                                        <span className="text-sm font-medium text-muted-foreground">Initial Effect:</span>
+                                        <div className="font-medium text-foreground">{initialEffect || "None"}</div>
                                     </div>
                                     <div>
-                                        <span className="text-sm font-medium text-gray-500">Base Price:</span>
-                                        <div className="font-medium">${basePrice}</div>
+                                        <span className="text-sm font-medium text-muted-foreground">Base Price:</span>
+                                        <div className="font-medium text-foreground">${basePrice}</div>
                                     </div>
                                 </div>
                             </div>
                         )}
                     </div>
-
-                    {showPresetsInfo && (
-                        <div className="bg-gray-50 p-4 rounded-md text-sm">
-                            <h3 className="font-medium mb-2">Available Substances</h3>
-                            <div className="space-y-2">
-                                {presets.map((preset) => (
-                                    <div key={preset.name} className="pb-2 border-b border-gray-200 last:border-0">
-                                        <div className="font-medium">{preset.name}</div>
-                                        <div>Initial Effect: {preset.initialEffect || "None"}</div>
-                                        <div>Base Price: ${preset.basePrice}</div>
-                                    </div>
-                                ))}
-                            </div>
-                            <p className="mt-3 text-gray-600">
-                                To modify substances, edit the <code>presets</code> array in <code>lib/tables.ts</code>
-                            </p>
-                        </div>
-                    )}
 
                     <div className="space-y-2">
                         <Label htmlFor="maxSteps">Maximum Steps</Label>
