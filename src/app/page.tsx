@@ -1,21 +1,25 @@
-import { MixerForm } from "@/components/mixer-form"
-import { MixerResults } from "@/components/mixer-results"
-import { SubstanceInfo } from "@/components/substance-info"
+import { MixerForm } from "@/components/mixer-form";
+import { MixerResults } from "@/components/mixer-results";
+import { SubstanceInfo } from "@/components/substance-info";
 
 export default function Home() {
-    return (
-        <div className="container mx-auto py-8 px-4">
-            <div className="max-w-4xl mx-auto">
-                    <h1 className="text-3xl font-bold mb-6 text-center">Schedule I Calculator</h1>
-                <p className="text-gray-600 mb-8 text-center">Calculate the optimal mixing sequence to maximize profit</p>
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="mx-auto max-w-4xl">
+        <h1 className="mb-6 text-center text-3xl font-bold">
+          Schedule I Calculator
+        </h1>
+        <p className="mb-8 text-center text-gray-600">
+          Calculate the optimal mixing sequence to maximize profit
+        </p>
 
-                <div className="bg-card border border-border rounded-lg p-6 mb-8">
-                    <MixerForm />
-                    <MixerResults />
-                </div>
-
-                <SubstanceInfo />
-            </div>
+        <div className="bg-card border-border mb-8 rounded-lg border p-6">
+          <MixerForm />
+          <MixerResults />
         </div>
-    )
+
+        <SubstanceInfo />
+      </div>
+    </div>
+  );
 }
